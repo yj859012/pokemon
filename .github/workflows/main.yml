@@ -1,5 +1,5 @@
-# 크롤랑한 포켓몬를 5분마다 csv로 저장!!
-name: pokemon Data Per 5m
+# 크롤링한 포켓몬 데이터를 5분마다 csv로 저장!!
+name: Pokemon Data Per 5m
 
 on: # 작업을 수행하는 조건
   schedule: # 스케쥴링
@@ -18,15 +18,13 @@ jobs: # 실행할 작업을 정의
         with:
           python-version: "3.9"
       - name: 크롤링 환경 설정
-      
         run: |
           pip install selenium
           sudo apt-get update
-          sudo apt-get install chrominum-browser -y
+          sudo apt-get install chromium-browser -y
           sudo apt-get install chromium-chromedriver -y
-          sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
-      
-      - name: 포캣몬 정보 가져오기
+          # sudo ln -sf /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
+      - name: 포켓몬 정보 가져오기
         env:
           DISPLAY: 99
         run: python pokemon.py
